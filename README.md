@@ -7,7 +7,7 @@ BattleBuilt is a simple React app for building and sharing collectible card game
 The app focuses on practicing modern frontend patterns — component design, client-side routing, simple forms and lists, third-party API integration (Pokémon TCG API), and small performance touches like debouncing, request aborting, caching, and limiting fields from API responses.
 
 YouTube Demo Video
-[Software Demo Video]()
+[Software Demo Video](https://youtu.be/67n22LWoK88)
 
 ## Web pages
 
