@@ -23,3 +23,31 @@ main.container{padding:48px 24px}
 .deck-filter label{margin-right:6px;color:var(--muted)}
 
 .deck-description{color:#444;font-size:0.95rem;margin-bottom:12px}
+
+/* Builder styles */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-top:12px}
+.card-tile{background:#fff;border:1px solid #e6e6ee;border-radius:8px;display:flex;align-items:center;justify-content:center;height:0;padding:0;position:relative}
+/* approximate card ratio 2.5:3.5 -> aspect-ratio ~ 0.714. We'll use padding-top hack for compatibility */
+.card-tile{padding-top:140%; /* controls height relative to width */}
+.card-tile .card-inner{position:absolute;top:12px;left:12px;right:12px;bottom:12px;display:flex;align-items:center;justify-content:center}
+.card-tile.add-card{background:#f9fafc;border:1px dashed #d6d6e0;cursor:pointer}
+.card-tile.add-card .plus{font-size:36px;color:var(--accent);text-align:center}
+.card-tile .add-text{font-style:italic;color:#777;text-align:center;margin-top:8px}
+.add-inner{position:absolute;top:12px;left:12px;right:12px;bottom:12px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+
+/* Modal */
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;z-index:1000}
+.modal{background:#fff;padding:18px;border-radius:8px;max-width:540px;width:100%;position:relative}
+.modal-close{position:absolute;top:8px;right:8px;border:none;background:transparent;font-size:22px;cursor:pointer}
+.card-search{width:100%;padding:8px;margin-top:8px;margin-bottom:8px}
+.results{max-height:200px;overflow:auto;border:1px solid #eee;padding:6px}
+.result{padding:8px;border-radius:6px;cursor:pointer}
+.result.selected{background:#eef6ff}
+.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:12px}
+
+/* Builder form layout */
+.builder-form label{display:block;margin-top:12px;font-weight:600}
+.builder-form input{display:block;width:100%;padding:8px;border-radius:6px;border:1px solid #ddd;margin-top:6px}
+.builder-form textarea{display:block;width:100%;padding:8px;border-radius:6px;border:1px solid #ddd;margin-top:6px}
+
+
