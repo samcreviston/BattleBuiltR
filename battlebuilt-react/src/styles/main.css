@@ -27,7 +27,7 @@ main.container{padding:48px 24px}
 /* Builder styles */
 .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-top:12px}
 .card-tile{background:#fff;border:1px solid #e6e6ee;border-radius:8px;display:flex;align-items:center;justify-content:center;height:0;padding:0;position:relative}
-/* approximate card ratio 2.5:3.5 -> aspect-ratio ~ 0.714. We'll use padding-top hack for compatibility */
+/* approximate card ratio 2.5:3.5 -> aspect-ratio ~ 0.714. Use padding-top hack for compatibility */
 .card-tile{padding-top:140%; /* controls height relative to width */}
 .card-tile .card-inner{position:absolute;top:12px;left:12px;right:12px;bottom:12px;display:flex;align-items:center;justify-content:center}
 .card-tile.add-card{background:#f9fafc;border:1px dashed #d6d6e0;cursor:pointer}

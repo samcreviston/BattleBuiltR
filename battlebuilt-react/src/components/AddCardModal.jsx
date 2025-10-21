@@ -49,7 +49,7 @@ export default function AddCardModal({ onClose, onAdd }) {
       abortRef.current = controller
 
   const q = encodeURIComponent(`name:${query}`)
-  // request only the fields we need (id, name, images) to reduce payload
+  // Request only the required fields (id, name, images) to reduce payload size
   const url = `/api/tcg/cards?q=${q}&page=1&pageSize=1&select=id,name,images`
 
       fetch(url, { signal: controller.signal })
