@@ -16,7 +16,7 @@ export default function Builder() {
   const [showAdd, setShowAdd] = useState(false)
 
   function onAddCard(card) {
-    setCards((s) => [...s, { id: card.id, name: card.name }])
+    setCards((s) => [...s, { id: card.id, name: card.name, images: card.images || null }])
     setShowAdd(false)
   }
 
@@ -25,7 +25,7 @@ export default function Builder() {
   }
 
   function canSubmit() {
-    return title.trim() && author.trim() && battleGuide.trim() && cards.length >= 10
+    return title.trim() && author.trim() && battleGuide.trim() && cards.length >= 3
   }
 
   if (!step) {
@@ -47,6 +47,11 @@ export default function Builder() {
         <Footer />
       </div>
     )
+  }
+
+  function handleSubmit() {
+    // prepare JSON here; in the real app we'd send it to an API
+    // submission popup removed — this is a no-op placeholder
   }
 
   return (
@@ -82,10 +87,11 @@ export default function Builder() {
 
         <div style={{ marginTop: 24 }}>
           <button className="btn ghost" onClick={() => { setStep(0); setGame('') }}>Cancel</button>
-          <button className="btn" disabled={!canSubmit()} style={{ marginLeft: 12 }} onClick={() => alert('Would submit deck JSON via email API')}>Submit Deck</button>
+          <button className="btn" disabled={!canSubmit()} style={{ marginLeft: 12 }} onClick={handleSubmit}>Submit Deck</button>
         </div>
 
         {showAdd && <AddCardModal onClose={() => setShowAdd(false)} onAdd={onAddCard} />}
+  {/* submission popup removed */}
       </main>
       <Footer />
     </div>

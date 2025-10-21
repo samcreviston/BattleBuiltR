@@ -10,7 +10,11 @@ export default function CardTile({ card, onClick, isAdd = false }) {
         </div>
       ) : (
         <div className="card-inner">
-          <div className="card-name">{card.name}</div>
+          {card && card.images && (card.images.small || card.images.large) ? (
+            <img src={card.images.small || card.images.large} alt={card.name} style={{ maxWidth: '100%', maxHeight: '100%' }} />
+          ) : (
+            <div className="card-name">{card.name}</div>
+          )}
         </div>
       )}
     </div>

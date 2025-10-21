@@ -41,7 +41,9 @@ main.container{padding:48px 24px}
 .modal-close{position:absolute;top:8px;right:8px;border:none;background:transparent;font-size:22px;cursor:pointer}
 .card-search{width:100%;padding:8px;margin-top:8px;margin-bottom:8px}
 .results{max-height:200px;overflow:auto;border:1px solid #eee;padding:6px}
-.result{padding:8px;border-radius:6px;cursor:pointer}
+.result{display:flex;gap:8px;align-items:center;padding:8px;border-radius:6px;cursor:pointer}
+.result img{width:48px;height:64px;object-fit:cover;border-radius:4px}
+.result .result-name{flex:1}
 .result.selected{background:#eef6ff}
 .modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:12px}
 
