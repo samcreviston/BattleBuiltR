@@ -2,12 +2,12 @@
 
 ## Overview
 
-BattleBuilt is a simple React app for building and sharing collectible card game decks. It recreates the main features from an earlier TypeScript reference project and demonstrates a clean, component-based React build using **Vite** for fast development, somthing I wanted to practice and sharpen my skills in.
+BattleBuilt is a simple React app, now connected to a MongoDB Database, for building and sharing collectible card game decks. It creates and displays the main features of deck building and viewing (to and from the MongoDB collection of decks) with a component-based React build using **Vite** for fast development, somthing I wanted to practice and sharpen my skills in.
 
-The app focuses on practicing modern frontend patterns — component design, client-side routing, simple forms and lists, third-party API integration (Pokémon TCG API), and small performance touches like debouncing, request aborting, caching, and limiting fields from API responses.
+The app focuses on practicing modern frontend patterns, NoSQL cloud database connection, third-party API integration (Pokémon TCG API), and effective performance (debouncing, request aborting, caching, and limiting fields from API responses).
 
 YouTube Demo Video
-[Software Demo Video](https://youtu.be/67n22LWoK88)
+[Software Demo Video](youtube.com)
 
 ## Cloud Database
 
