@@ -80,11 +80,11 @@ Used tools & libraries
 	https://docs.pokemontcg.io/ (or https://dev.pokemontcg.io/)
 - React documentation — reference for React and hooks:
 	https://reactjs.org/
-- Vite documentation — build and dev server docs:
-	https://vitejs.dev/
+- MongoDB Documentation — store, update, and retreive data from the cloud:
+  	https://www.mongodb.com/docs/
 
 ## Future work
 
-* enabling the submitting of decks to a database for approval and storage
-* CSS animations and styling for showing card information and abilities
-* 
+* Adding authentication and signing in/out of users
+* Adding feature to favorite/save decks
+* improved CSS and animations and styling for showing card information and abilities
