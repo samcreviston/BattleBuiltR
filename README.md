@@ -73,6 +73,7 @@ Used tools & libraries
 - React 18 — UI library
 - react-router-dom — client-side routing
 - pnpm — package manager (project sets `packageManager` in `package.json`)
+- MongoDB & Mongoose — database data/connection manager
 
 ## Useful websites
 
