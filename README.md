@@ -7,7 +7,7 @@ BattleBuilt is a simple React app, now connected to a MongoDB Database, for buil
 The app focuses on practicing NoSQL cloud database connection, modern frontend patterns, third-party API integration (Pokémon TCG API), and effective performance (debouncing, request aborting, caching, and limiting fields from API responses).
 
 YouTube Demo Video
-[Software Demo Video](youtube.com)
+[Software Demo Video](https://youtu.be/xEuDSD-Ezoc)
 
 ## Cloud Database
 
