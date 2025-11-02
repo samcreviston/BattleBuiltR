@@ -58,6 +58,7 @@ Prerequisites
 Install and run
 - Install dependencies: `pnpm install`
 - Start dev server: `pnpm run dev`
+- Start dev database connection server: `pnpm run dev:server`
 - Open the app in a browser at: `http://localhost:5173/`
 
 Build for production
