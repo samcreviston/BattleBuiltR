@@ -32,8 +32,8 @@ decks document shape/variables (Mongoose schema in server/models/Deck.js):
 - { id: string, name: string, images?: { small?: string, large?: string, ... } }
 - createdAt: date (auto, via Mongoose timestamps)
 - updatedAt: date (auto, via Mongoose timestamps)
-Indexes:
-Unique index on decks.index and a default _id index provided by MongoDB.
+
+Indexes: Unique index on decks.index and a default _id index provided by MongoDB.
 
 ## Web pages
 
