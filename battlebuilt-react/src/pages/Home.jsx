@@ -10,7 +10,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('/data/decks.json')
+    fetch('/api/decks')
       .then((r) => r.json())
       .then((data) => setDecks(data))
       .catch((err) => console.error('Failed to load decks', err))

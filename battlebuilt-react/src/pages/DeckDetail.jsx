@@ -11,23 +11,17 @@ export default function DeckDetail() {
 
   useEffect(() => {
     if (!index) return
-    fetch(`/data/decks/${index}.json`)
+    fetch(`/api/decks/${index}`)
       .then((r) => {
         if (!r.ok) throw new Error('not found')
         return r.json()
       })
       .then((d) => {
-        setDeck({ index: index, name: d.name, description: d.description, game: d.game })
+        setDeck({ index: d.index, name: d.name, description: d.description, game: d.game })
         setCards(d.cards || null)
       })
-      .catch(() => {
-        fetch('/data/decks.json')
-          .then((r) => r.json())
-          .then((data) => {
-            const found = data.find((d) => d.index === index) || null
-            setDeck(found)
-          })
-          .catch((err) => console.error('Failed to load deck', err))
+      .catch((err) => {
+        console.error('Failed to load deck', err)
       })
       .finally(() => setLoading(false))
   }, [index])
@@ -45,13 +39,22 @@ export default function DeckDetail() {
             <p>
               <strong>Game:</strong> <span className="deck-game">{deck.game}</span>
             </p>
-            {cards && (
+            {Array.isArray(cards) && cards.length > 0 && (
               <section>
                 <h3>Cards</h3>
                 <ul>
-                  {cards.map((c, i) => (
-                    <li key={i}>{c}</li>
-                  ))}
+                  {cards.map((c, i) => {
+                    const isObj = c && typeof c === 'object'
+                    const name = isObj ? (c.name || c.id || 'Card') : String(c)
+                    const key = isObj && c.id ? c.id : i
+                    const img = isObj && c.images && (c.images.small || c.images.thumbnail || c.images.large)
+                    return (
+                      <li key={key} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                        {img ? <img src={img} alt={name} style={{ width: 44, height: 'auto', borderRadius: 4 }} /> : null}
+                        <span>{name}</span>
+                      </li>
+                    )
+                  })}
                 </ul>
               </section>
             )}

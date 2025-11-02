@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import CardTile from '../components/CardTile'
 import AddCardModal from '../components/AddCardModal'
 
 export default function Builder() {
+  const navigate = useNavigate()
   const [game, setGame] = useState('')
   const [step, setStep] = useState(0)
 
@@ -14,6 +16,7 @@ export default function Builder() {
 
   const [cards, setCards] = useState([])
   const [showAdd, setShowAdd] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
 
   function onAddCard(card) {
     setCards((s) => [...s, { id: card.id, name: card.name, images: card.images || null }])
@@ -49,9 +52,47 @@ export default function Builder() {
     )
   }
 
-  function handleSubmit() {
-    // prepare JSON here; in the real app we'd send it to an API
-    // submission popup removed — this is a no-op placeholder
+  async function handleSubmit() {
+    // Assemble payload and POST to the API
+    const generateIndex = () => String(Math.floor(100000 + Math.random() * 900000))
+    let index = generateIndex()
+    const payload = {
+      index,
+      name: title.trim(),
+      author: author.trim(),
+      description: battleGuide.trim(),
+      strategyDescription: battleGuide.trim(),
+      game,
+      cards,
+    }
+    setSubmitting(true)
+    try {
+      let res = await fetch('/api/decks', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      if (res.status === 409) {
+        // Retry once with a new index if conflict
+        index = generateIndex()
+        payload.index = index
+        res = await fetch('/api/decks', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        })
+      }
+      if (!res.ok) {
+        const msg = await res.text()
+        alert(`Submit failed: ${msg}`)
+        return
+      }
+      navigate(`/deck/${index}`)
+    } catch (err) {
+      alert(`Submit error: ${err.message || err}`)
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -87,11 +128,10 @@ export default function Builder() {
 
         <div style={{ marginTop: 24 }}>
           <button className="btn ghost" onClick={() => { setStep(0); setGame('') }}>Cancel</button>
-          <button className="btn" disabled={!canSubmit()} style={{ marginLeft: 12 }} onClick={handleSubmit}>Submit Deck</button>
+          <button className="btn" disabled={!canSubmit() || submitting} style={{ marginLeft: 12 }} onClick={handleSubmit}>{submitting ? 'Submitting…' : 'Submit Deck'}</button>
         </div>
 
-        {showAdd && <AddCardModal onClose={() => setShowAdd(false)} onAdd={onAddCard} />}
-  {/* submission popup removed */}
+    {showAdd && <AddCardModal onClose={() => setShowAdd(false)} onAdd={onAddCard} />}
       </main>
       <Footer />
     </div>

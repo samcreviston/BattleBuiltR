@@ -23,6 +23,15 @@ export default ({ mode }) => {
             })
           },
         },
+        // Proxy local API server endpoints
+        '/api/health': {
+          target: 'http://localhost:3001',
+          changeOrigin: true,
+        },
+        '/api/decks': {
+          target: 'http://localhost:3001',
+          changeOrigin: true,
+        },
       },
     },
   })
