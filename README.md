@@ -9,6 +9,32 @@ The app focuses on practicing modern frontend patterns — component design, cli
 YouTube Demo Video
 [Software Demo Video](https://youtu.be/67n22LWoK88)
 
+## Cloud Database
+
+Service: MongoDB Atlas (cloud‑hosted MongoDB).
+Connection: The app reads the connection string from the .env variable MONGODB_URI and connects via Mongoose in the Express server (server/lib/db.js).
+Usage in the app:
+- A small API lives in server/index.js with routes under /api/decks.
+- The Vite dev server proxies frontend calls to the API, so the browser never touches the database directly.
+
+Collections:
+decks — stores each deck as a single document.
+
+decks document shape/variables (Mongoose schema in server/models/Deck.js):
+- index: string, required, unique
+- name: string, required
+- author: string, optional
+- description: string
+- strategyDescription: string
+- game: string, required (e.g., "Pokemon", "MTG")
+- cards: array (mixed)
+- Supports legacy string entries (e.g., "Pikachu") and object entries:
+- { id: string, name: string, images?: { small?: string, large?: string, ... } }
+- createdAt: date (auto, via Mongoose timestamps)
+- updatedAt: date (auto, via Mongoose timestamps)
+Indexes:
+Unique index on decks.index and a default _id index provided by MongoDB.
+
 ## Web pages
 
 - Home (/)
